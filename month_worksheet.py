@@ -1,7 +1,7 @@
 import os
 import json
 import gspread
-from oauth2client.client import SignedJwtAssertionCredentials
+from oauth2client.service_account import ServiceAccountCredentials
 from container_func import list_union
 from date_data import WeeklyData
 
@@ -13,7 +13,7 @@ scope = [
         ]
 
 # get email and key from cred
-credentials = SignedJwtAssertionCredentials(json_key['client_email'],
+credentials = ServiceAccountCredentials(json_key['client_email'],
                                             json_key['private_key'].encode(),
                                             scope
                                            )

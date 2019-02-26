@@ -1,6 +1,7 @@
 import json
 import gspread
-from oauth2client.client import SignedJwtAssertionCredentials
+#from apiclient.discovery import build
+from oauth2client.service_account import ServiceAccountCredentials
 from month_worksheet import MonthSheet
 
 # json credentials you downloaded earlier
@@ -11,7 +12,7 @@ scope = [
         ]
 
 # get email and key from cred
-credentials = SignedJwtAssertionCredentials(json_key['client_email'],
+credentials = ServiceAccountCredentials(json_key['client_email'],
                                             json_key['private_key'].encode(),
                                             scope
                                            )
