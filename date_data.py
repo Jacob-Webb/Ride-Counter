@@ -2,7 +2,6 @@ import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# json credentials you downloaded earlier
 #json_key = json.load(open('creds.json'))
 scope = [
          'https://spreadsheets.google.com/feeds',
@@ -14,6 +13,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('creds.json', sco
 
 # authenticate with Google
 file = gspread.authorize(credentials)
+
 """****************************************************************************
 WeeklyData class pulls the data from the weekly spreadsheets. This is the core
 of the data that will be updated in the "totals" for the yearly spreadsheets.
@@ -40,7 +40,7 @@ class WeeklyData(object):
         # info is a list of cell objects from left to right and
         # top to bottom in the range
         self.cell_list = self.date_sheet.range('B8:D14')
-        """
+        """ 
         weekly_sheet.range cell values
                     buses   stops   Riders
             wed      0        1       2

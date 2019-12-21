@@ -5,7 +5,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 from container_func import list_union
 from date_data import WeeklyData
 
-# json credentials you downloaded earlier
 scope = [
          'https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive'

@@ -1,10 +1,8 @@
 import json
 import gspread
-#from apiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 from month_worksheet import MonthSheet
 
-# json credentials you downloaded earlier
 scope = [
          'https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive'
