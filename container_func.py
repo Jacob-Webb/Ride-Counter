@@ -158,19 +158,3 @@ def dict_union(dict1, dict2):
         j += 1
 
     return dict_union
-
-
-""""
-dict1 = {'15': ['Oct', 'Nov', 'Dec'], '17': ['Jan', 'Feb', 'Mar'], }
-dict2 = {'16': ['Feb', 'Sep'], '17': ['Mar', 'May', 'Jun']}
-
-dict3 = {'14': ['Aug'], '19': ['Aug', 'Sep'], '17': ['Jan']}
-dict4 = {'19': ['Aug'], '15': ['Mar'], '14': ['Sep'], '17': ['Jul']}
-
-print dict_diff(dict1, dict2)
-print dict_diff(dict2, dict1)
-print dict_diff(dict3, dict4)
-print dict_diff(dict4, dict3)
-print dict_diff(dict2, dict4)
-print dict_diff(dict1, dict3)
-"""
