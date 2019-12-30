@@ -29,8 +29,7 @@ class SheetsUI(object):
 
     # Get the names of files that the user wants to add to yearly information
     def get_files(self):
-        file_names = raw_input("Insert any file names you want to update" \
-            "the monthly and yearly totals with here: ")
+        file_names = raw_input("Which file(s) need to be included in the monthly totals?")
         self.file_list = file_names.replace(",", " ").split()
 
     def get_user_list(self):
