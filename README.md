@@ -1,4 +1,4 @@
-# Python-sheets.py
+# Ride-Counter
 This program takes in numbers from the google sheets given by the user. It sums up the numbers of all given riders and automatically updates the monthly and yearly totals. 
 
 ## Setup
