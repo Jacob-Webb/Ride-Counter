@@ -45,7 +45,7 @@ class YearSheet(object):
     # yearly spreadsheet
     def __init__(self, year, month_list, file_list, user_list):
         self.year = year
-        self.sheet_name = "20" + year + " Totals"
+        self.sheet_name = "'" + year + " Totals"
         self.month_list = month_list
         self.file_list = file_list
         self.user_list = user_list

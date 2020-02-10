@@ -22,6 +22,7 @@ spreadsheet
 ***********************************************************************"""
 class MonthSheet(object):
 
+    # service indexes
     _wednesday = 0
     _women_rock = 1
     _nine_am = 2
@@ -30,6 +31,7 @@ class MonthSheet(object):
     _special = 5
     _total = 6
 
+    # section indexes
     _buses = 0
     _stops = 1
     _riders = 2
@@ -83,7 +85,7 @@ class MonthSheet(object):
             week_data = WeeklyData(this_file)
             self.data_list.append(week_data)
 
-    # For each weekly spreadsheet, retrieve the relevant values
+    # For each weekly spreadsheet, retrieve the relevant values and then add them to the monthly sheet in the appropriate list.
     def get_numbers(self):
                   #wed, wr, 9am, 11am, span, spec, tot
         self.buses =  [0,  0,   0,   0,     0,   0,    0]
@@ -91,9 +93,11 @@ class MonthSheet(object):
         self.riders = [0,  0,   0,   0,     0,   0,    0]
 
         for data_object in self.data_list:
-            data = data_object.get_data()
+            data = data_object.get_data()       # data_object given from each WeeklyData object in a month
+            # for each service type and the total
             for i in range(7):
-                self.buses[i] += data[self._buses][i]
+                # Set the indeces of the buses, stops, and riders based on the data for a weekly sheet
+                self.buses[i] += data[self._buses][i] 
                 self.stops[i] += data[self._stops][i]
                 self.riders[i] += data[self._riders][i]
 
@@ -139,15 +143,20 @@ class MonthSheet(object):
         self.get_weekly_data()
         self.get_numbers()
 
+    # Update the worksheet that represents the month by inserting appropriate values
     def update_worksheet(self):
         data_cells = self.this_sheet.range('B8:D14')
 
         i = 0
+        # parse data
         for cell in data_cells:
+            # In the WeeklyData list number of buses is represented at %3 indexes 
             if i % 3 == 0:
                 cell.value = str(self.buses[i/3])
+            # In the WeeklyData list, number of stops is represented at %3 + 1 indexes
             if i % 3 == 1:
                 cell.value = str(self.stops[i/3])
+            # In the WeeklyData list, number of riders is represented at %3 + 2 indexes
             if i % 3 == 2:
                 cell.value = str(self.riders[i/3])
 
@@ -155,9 +164,10 @@ class MonthSheet(object):
 
         self.this_sheet.update_cells(data_cells)
 
-    # Main function to run for a MonthSheet object. It updates the files on
-    # record to include the files passed to it, gets data sheets (and numbers)
-    # for every data sheet associated, and then
+    # Main function to run for a MonthSheet object. 
+    # It updates the files on record to include the files passed to it
+    # gets data sheets (and numbers)for every data sheet associated, 
+    # and then
     def update(self):
         self.get_files()
         self.get_worksheet()

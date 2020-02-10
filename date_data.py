@@ -15,12 +15,13 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('creds.json', sco
 file = gspread.authorize(credentials)
 
 """****************************************************************************
-WeeklyData class pulls the data from the weekly spreadsheets. This is the core
-of the data that will be updated in the "totals" for the yearly spreadsheets.
+WeeklyData class pulls the data from a weekly spreadsheet. It searches each 
+cell in the range B8:D14.
 ****************************************************************************"""
 class WeeklyData(object):
 
-    #data members used to access buses, stops, and riders list elements
+    # data members used to access buses, stops, and riders list elements
+    # There are 5 services a week, a reserved spot for special services, and the total section
     _wednesday = 0
     _women_rock = 1
     _nine_am = 2
@@ -58,8 +59,9 @@ class WeeklyData(object):
         add_info = 0
 
         for cell in self.cell_list:
-            if add_info % 3 == 0: # if the cell value is a multiple of 3, add to buses[]
-                # if the value is not None add the value to the list
+            # if the cell value is a multiple of 3, add to buses[]
+            if add_info % 3 == 0: 
+                # if the cell contains a value add the value to the list
                 if cell.value:
                     self.buses.append(int(cell.value))
                 else:   # otherwise, add a zero
